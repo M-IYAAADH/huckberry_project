@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Huckberry{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a class="logo" href="{% url 'home' %}">Huckberry</a>
+      <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'product_list' %}">Products</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'privacy' %}">Privacy</a>
+	<a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'view_cart' %}">Cart</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer style="background-color: #003d7c; color: white; padding: 40px 20px; margin-top: 40px;">
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+
+      <!-- Contact Info -->
+      <div style="flex: 1 1 250px;">
+        <h3>Head Office</h3>
+        <p>Villa College (QI CAMPUS)<br>Boduthakurufaanu magu,<br>Republic of Maldives</p>
+        <p><strong>Tel:</strong> +960 3025487</p>
+        <p><strong>Email:</strong> <a href="mailto:s2401276@students.villacollege.edu.mv" style="color: #fff;">s2401276@students.villacollege.edu.mv</a></p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/9609114431" target="_blank" style="color: #fff;">+960 9114431</a></p>
+      </div>
+
+      <!-- Quick Links -->
+      <div style="flex: 1 1 200px;">
+        <h3>Navigation</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="{% url 'home' %}" style="color: #fff; text-decoration: none;">Home</a></li>
+          <li><a href="{% url 'product_list' %}" style="color: #fff; text-decoration: none;">Products</a></li>
+          <li><a href="{% url 'about' %}" style="color: #fff; text-decoration: none;">About</a></li>
+          <li><a href="{% url 'privacy' %}" style="color: #fff; text-decoration: none;">Privacy</a></li>
+          <li><a href="{% url 'contact' %}" style="color: #fff; text-decoration: none;">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div style="flex: 1 1 200px;">
+        <h3>Legal</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="color: #fff; text-decoration: none;">Terms & Conditions</a></li>
+          <li><a href="#" style="color: #fff; text-decoration: none;">Return Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr style="border-color: #fff; margin: 30px 0;">
+
+    <div style="text-align: center;">
+      <p>&copy; Huckberry {{ now.year }}. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

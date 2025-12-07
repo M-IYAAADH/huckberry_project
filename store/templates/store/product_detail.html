@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 40px auto; text-align: center;">
+  
+  <!-- Product Image -->
+  {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; height: auto; border-radius: 10px;">
+  {% endif %}
+
+  <!-- Product Name & Price -->
+  <h2 style="margin-top: 20px;">{{ product.name }}</h2>
+  <p style="font-size: 20px; font-weight: bold;">MVR {{ product.price|floatformat:2 }}</p>
+
+  <!-- Description Box -->
+  <div style="border: 1px solid #ddd; padding: 20px; border-radius: 10px; background-color: #fdfdfd; text-align: left; margin-top: 20px;">
+    <p>{{ product.description }}</p>
+
+    <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
+      <li><strong>Brand:</strong> {{ product.brand }}</li>
+      <li><strong>Gender:</strong> {{ product.gender }}</li>
+      <li><strong>Material:</strong> {{ product.material }}</li>
+    </ul>
+  </div>
+
+  <!-- Add to Cart Button -->
+  <form method="post" action="{% url 'add_to_cart' product.id %}" style="margin-top: 25px;">
+    {% csrf_token %}
+    <button type="submit" style="background-color: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px;">
+      Add to Cart
+    </button>
+  </form>
+</div>
+{% endblock %}

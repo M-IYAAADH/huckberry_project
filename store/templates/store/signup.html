@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f9f9f9;">
+  <div style="width: 100%; max-width: 400px; background: white; border: 1px solid #ccc; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+    <h2 style="text-align: center; margin-bottom: 25px;">Create an Account</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-weight: bold; margin-bottom: 8px;">{{ field.label_tag }}</label>
+          {{ field }}
+          
+          {% for error in field.errors %}
+            <div style="color: red; font-size: 13px; margin-top: 5px;">{{ error }}</div>
+          {% endfor %}
+          
+          {% if field.help_text %}
+            <small style="color: #555; display: block; margin-top: 5px;">{{ field.help_text }}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" style="width: 100%; padding: 10px; background-color: #2563eb; color: white; border: none; border-radius: 5px; font-weight: bold;">Register</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 15px;">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+  </div>
+</div>
+
+<style>
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+</style>
+{% endblock %}

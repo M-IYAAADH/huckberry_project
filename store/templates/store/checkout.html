@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Checkout – Huckberry{% endblock %}
+
+{% block content %}
+<div class="checkout-page">
+
+  <div class="checkout-form">
+    <h2>Checkout</h2>
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-row">
+        <div class="form-group">
+          {{ form.first_name.label_tag }}
+          {{ form.first_name }}
+          {{ form.first_name.errors }}
+        </div>
+        <div class="form-group">
+          {{ form.last_name.label_tag }}
+          {{ form.last_name }}
+          {{ form.last_name.errors }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          {{ form.street_address.label_tag }}
+          {{ form.street_address }}
+          {{ form.street_address.errors }}
+        </div>
+        <div class="form-group">
+          {{ form.city.label_tag }}
+          {{ form.city }}
+          {{ form.city.errors }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          {{ form.postal_code.label_tag }}
+          {{ form.postal_code }}
+          {{ form.postal_code.errors }}
+        </div>
+        <div class="form-group">
+          {{ form.country.label_tag }}
+          {{ form.country }}
+          {{ form.country.errors }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        {{ form.order_notes.label_tag }}
+        {{ form.order_notes }}
+        {{ form.order_notes.errors }}
+      </div>
+
+      <div class="form-group payment-methods">
+        {{ form.payment_method.label_tag }}
+        {{ form.payment_method }}
+        {{ form.payment_method.errors }}
+      </div>
+
+      <button type="submit" class="button">Place Order</button>
+    </form>
+  </div>
+
+  <div class="cart-totals">
+    <h3>Your order</h3>
+    <ul class="summary-list">
+      {% for item in cart_items %}
+      <li>
+        {{ item.product.name }} × {{ item.quantity }}
+        <span class="summary-price">MVR {{ item.subtotal|floatformat:2 }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="summary-total">Subtotal: MVR {{ total|floatformat:2 }}</div>
+    <div class="summary-grand">Total: MVR {{ total|floatformat:2 }}</div>
+  </div>
+</div>
+{% endblock %}

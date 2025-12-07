@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="cart-page" style="max-width: 1000px; margin: 2rem auto;">
+  <div class="cart-main">
+    <h2>Your Cart</h2>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-right">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in cart_items %}
+        <tr>
+          <td>
+            <form method="post" action="{% url 'remove_cart_item' item.id %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="remove-item">&times;</button>
+            </form>
+            {{ item.product.name }}
+          </td>
+          <td class="text-center">MVR {{ item.product.price|floatformat:2 }}</td>
+          <td class="text-center">
+            <form method="post" action="{% url 'update_cart_item' item.id %}">
+              {% csrf_token %}
+              <div class="quantity-controls">
+                <button type="submit" name="decrement">–</button>
+                <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                <button type="submit" name="increment">+</button>
+              </div>
+            </form>
+          </td>
+          <td class="text-right">MVR {{ item.subtotal|floatformat:2 }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="cart-actions" style="text-align: right; margin-top: 1rem;">
+      <a href="{% url 'view_cart' %}" class="button-outline">Refresh Cart</a>
+    </div>
+  </div>
+
+  <aside class="cart-totals" style="margin-top: 2rem;">
+    <h3>Cart totals</h3>
+    <div style="background:#fff; padding:1.5rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+      <div class="checkout-row" style="justify-content: space-between; padding:0.75rem 0;">
+        <span>Subtotal</span>
+        <span>MVR {{ total|floatformat:2 }}</span>
+      </div>
+      <div class="checkout-row" style="justify-content: space-between; padding:0.75rem 0;">
+        <span>Shipping</span>
+        <span>Free shipping</span>
+      </div>
+      <div class="checkout-row" style="justify-content: space-between; padding:0.75rem 0;">
+        <span>Tax</span>
+        <span>MVR 0.00</span>
+      </div>
+      <div class="checkout-total" style="text-align: right; font-weight:bold; margin-top:1rem;">
+        Total MVR {{ total|floatformat:2 }}
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <a href="{% url 'checkout' %}" class="button">Proceed to checkout</a>
+    </div>
+  </aside>
+</div>
+{% endblock %}
