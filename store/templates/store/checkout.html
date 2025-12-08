@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Checkout – Huckberry{% endblock %}
+{% block title %}Checkout - Huckberry{% endblock %}
 
 {% block content %}
-<div class="checkout-page">
+<h2 class="page-title">Checkout</h2>
 
+<div class="checkout-page">
+  <!-- Checkout Form -->
   <div class="checkout-form">
-    <h2>Checkout</h2>
+    <h2>Shipping Details</h2>
     <form method="post">
       {% csrf_token %}
 
@@ -15,12 +17,16 @@
         <div class="form-group">
           {{ form.first_name.label_tag }}
           {{ form.first_name }}
-          {{ form.first_name.errors }}
+          {% for error in form.first_name.errors %}
+          <span class="error-text">{{ error }}</span>
+          {% endfor %}
         </div>
         <div class="form-group">
           {{ form.last_name.label_tag }}
           {{ form.last_name }}
-          {{ form.last_name.errors }}
+          {% for error in form.last_name.errors %}
+          <span class="error-text">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
 
@@ -28,12 +34,16 @@
         <div class="form-group">
           {{ form.street_address.label_tag }}
           {{ form.street_address }}
-          {{ form.street_address.errors }}
+          {% for error in form.street_address.errors %}
+          <span class="error-text">{{ error }}</span>
+          {% endfor %}
         </div>
         <div class="form-group">
           {{ form.city.label_tag }}
           {{ form.city }}
-          {{ form.city.errors }}
+          {% for error in form.city.errors %}
+          <span class="error-text">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
 
@@ -41,43 +51,73 @@
         <div class="form-group">
           {{ form.postal_code.label_tag }}
           {{ form.postal_code }}
-          {{ form.postal_code.errors }}
+          {% for error in form.postal_code.errors %}
+          <span class="error-text">{{ error }}</span>
+          {% endfor %}
         </div>
         <div class="form-group">
           {{ form.country.label_tag }}
           {{ form.country }}
-          {{ form.country.errors }}
+          {% for error in form.country.errors %}
+          <span class="error-text">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
 
       <div class="form-group">
         {{ form.order_notes.label_tag }}
         {{ form.order_notes }}
-        {{ form.order_notes.errors }}
+        {% for error in form.order_notes.errors %}
+        <span class="error-text">{{ error }}</span>
+        {% endfor %}
       </div>
 
+      <p class="section-title">Payment Method</p>
       <div class="form-group payment-methods">
-        {{ form.payment_method.label_tag }}
         {{ form.payment_method }}
-        {{ form.payment_method.errors }}
+        {% for error in form.payment_method.errors %}
+        <span class="error-text">{{ error }}</span>
+        {% endfor %}
       </div>
 
-      <button type="submit" class="button">Place Order</button>
+      <button type="submit" class="button button-full">Place Order</button>
     </form>
   </div>
 
-  <div class="cart-totals">
-    <h3>Your order</h3>
-    <ul class="summary-list">
+  <!-- Order Summary -->
+  <div class="order-summary">
+    <h3>Order Summary</h3>
+
+    <div class="order-items">
       {% for item in cart_items %}
-      <li>
-        {{ item.product.name }} × {{ item.quantity }}
-        <span class="summary-price">MVR {{ item.subtotal|floatformat:2 }}</span>
-      </li>
+      <div class="order-item">
+        {% if item.product.image %}
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+        {% endif %}
+        <div class="order-item-info">
+          <p class="order-item-name">{{ item.product.name }}</p>
+          <p class="order-item-variant">Qty: {{ item.quantity }}</p>
+        </div>
+        <p class="order-item-price">MVR {{ item.subtotal|floatformat:2 }}</p>
+      </div>
       {% endfor %}
+    </div>
+
+    <ul class="totals-list">
+      <li>
+        <span>Subtotal</span>
+        <span>MVR {{ total|floatformat:2 }}</span>
+      </li>
+      <li>
+        <span>Shipping</span>
+        <span>Free</span>
+      </li>
     </ul>
-    <div class="summary-total">Subtotal: MVR {{ total|floatformat:2 }}</div>
-    <div class="summary-grand">Total: MVR {{ total|floatformat:2 }}</div>
+
+    <div class="totals-total">
+      <span>Total</span>
+      <span>MVR {{ total|floatformat:2 }}</span>
+    </div>
   </div>
 </div>
 {% endblock %}

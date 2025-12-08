@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHADES - Premium Sunglasses | Sample Structure</title>
+    <meta name="description" content="Discover premium sunglasses with UV protection. Free shipping on orders over $100.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================
+     PROMO BAR
+     ============================ -->
+<div class="promo-bar">
+    🕶️ Free Shipping on Orders Over $100 • <a href="#">Shop Now</a>
+</div>
+
+<!-- ============================
+     HEADER / NAVIGATION
+     ============================ -->
+<header>
+    <div class="nav-container">
+        <a href="/" class="logo">SHADES</a>
+        
+        <nav>
+            <a href="/products" class="active">Shop</a>
+            <a href="/collections/mens">Men</a>
+            <a href="/collections/womens">Women</a>
+            <a href="/collections/new">New Arrivals</a>
+            <a href="/about">About</a>
+        </nav>
+        
+        <div class="nav-icons">
+            <!-- Search -->
+            <button type="button" aria-label="Search">🔍</button>
+            
+            <!-- Account -->
+            <a href="/account" aria-label="Account">👤</a>
+            
+            <!-- Cart with count -->
+            <button type="button" class="cart-toggle" aria-label="Open cart">
+                🛒
+                <span class="cart-count">3</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ============================
+     HERO SECTION
+     ============================ -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>See the World<br>in Style</h1>
+        <p class="hero-subtext">
+            Premium sunglasses crafted for those who appreciate quality, 
+            comfort, and timeless design. 100% UV protection guaranteed.
+        </p>
+        <div class="hero-buttons">
+            <a href="/collections/all" class="button button-large">Shop Sunglasses</a>
+            <a href="/collections/new" class="button-outline button-large">New Arrivals</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================
+     FILTERS BAR
+     ============================ -->
+<div class="filters-container">
+    <div class="filters-header">
+        <h3>Filter By</h3>
+        <button class="clear-filters">Clear All</button>
+    </div>
+    
+    <div class="filters-bar">
+        <!-- Gender Filter -->
+        <div class="filter-group">
+            <label>Gender</label>
+            <div class="filter-pills">
+                <button class="filter-pill active">All</button>
+                <button class="filter-pill">Men</button>
+                <button class="filter-pill">Women</button>
+                <button class="filter-pill">Unisex</button>
+            </div>
+        </div>
+        
+        <!-- Frame Type Filter -->
+        <div class="filter-group">
+            <label>Frame Type</label>
+            <div class="filter-pills">
+                <button class="filter-pill">Aviator</button>
+                <button class="filter-pill">Wayfarer</button>
+                <button class="filter-pill">Round</button>
+                <button class="filter-pill">Square</button>
+                <button class="filter-pill">Cat Eye</button>
+            </div>
+        </div>
+        
+        <!-- Lens Type Filter -->
+        <div class="filter-group">
+            <label>Lens Type</label>
+            <div class="filter-pills">
+                <button class="filter-pill">Polarized</button>
+                <button class="filter-pill">Mirrored</button>
+                <button class="filter-pill">Gradient</button>
+            </div>
+        </div>
+        
+        <!-- Color Filter -->
+        <div class="filter-group">
+            <label>Frame Color</label>
+            <div class="filter-colors">
+                <button class="filter-color active" style="background: #000" title="Black"></button>
+                <button class="filter-color" style="background: #8B4513" title="Brown"></button>
+                <button class="filter-color" style="background: #C9B037" title="Gold"></button>
+                <button class="filter-color" style="background: #C0C0C0" title="Silver"></button>
+                <button class="filter-color" style="background: #DC143C" title="Red"></button>
+            </div>
+        </div>
+        
+        <!-- Price Filter -->
+        <div class="filter-group">
+            <label>Price Range</label>
+            <div class="price-range-inputs">
+                <input type="number" placeholder="$0" min="0">
+                <span>to</span>
+                <input type="number" placeholder="$500" max="500">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Active Filters Tags -->
+    <div class="active-filters">
+        <span class="active-filter-tag">
+            Black <button type="button">&times;</button>
+        </span>
+        <span class="active-filter-tag">
+            All Genders <button type="button">&times;</button>
+        </span>
+    </div>
+</div>
+
+<!-- ============================
+     PRODUCT GRID
+     ============================ -->
+<h2 class="page-title">Our Collection</h2>
+
+<div class="product-grid">
+    <!-- Product Card 1 -->
+    <article class="product-card">
+        <div class="badges">
+            <span class="badge-new">New</span>
+            <span class="badge-polarized">Polarized</span>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+        <div class="product-image-wrapper">
+            <img src="/media/sunglasses-1.jpg" alt="Classic Aviator Sunglasses">
+        </div>
+        <p class="product-category">Aviator • Unisex</p>
+        <h3 class="product-name"><a href="/products/classic-aviator">Classic Aviator</a></h3>
+        <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="count">(124)</span>
+        </div>
+        <p class="price">$189.00</p>
+        <div class="quick-actions">
+            <button class="button-small">Add to Cart</button>
+        </div>
+    </article>
+    
+    <!-- Product Card 2 (Sale) -->
+    <article class="product-card">
+        <div class="badges">
+            <span class="badge-sale">Sale</span>
+        </div>
+        <button class="wishlist-btn active" aria-label="Remove from wishlist">♥</button>
+        <div class="product-image-wrapper">
+            <img src="/media/sunglasses-2.jpg" alt="Urban Wayfarer Sunglasses">
+        </div>
+        <p class="product-category">Wayfarer • Men</p>
+        <h3 class="product-name"><a href="/products/urban-wayfarer">Urban Wayfarer</a></h3>
+        <div class="product-rating">
+            <span class="stars">★★★★☆</span>
+            <span class="count">(89)</span>
+        </div>
+        <p class="price">
+            <span class="price-original">$220.00</span>
+            $165.00
+        </p>
+        <div class="quick-actions">
+            <button class="button-small">Add to Cart</button>
+        </div>
+    </article>
+    
+    <!-- Product Card 3 -->
+    <article class="product-card">
+        <div class="badges">
+            <span class="badge-bestseller">Bestseller</span>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+        <div class="product-image-wrapper">
+            <img src="/media/sunglasses-3.jpg" alt="Retro Round Sunglasses">
+        </div>
+        <p class="product-category">Round • Women</p>
+        <h3 class="product-name"><a href="/products/retro-round">Retro Round</a></h3>
+        <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="count">(203)</span>
+        </div>
+        <p class="price">$159.00</p>
+        <div class="quick-actions">
+            <button class="button-small">Add to Cart</button>
+        </div>
+    </article>
+    
+    <!-- Product Card 4 -->
+    <article class="product-card">
+        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+        <div class="product-image-wrapper">
+            <img src="/media/sunglasses-4.jpg" alt="Sport Shield Sunglasses">
+        </div>
+        <p class="product-category">Shield • Unisex</p>
+        <h3 class="product-name"><a href="/products/sport-shield">Sport Shield Pro</a></h3>
+        <div class="product-rating">
+            <span class="stars">★★★★☆</span>
+            <span class="count">(56)</span>
+        </div>
+        <p class="price">$245.00</p>
+        <div class="quick-actions">
+            <button class="button-small">Add to Cart</button>
+        </div>
+    </article>
+</div>
+
+<!-- ============================
+     PRODUCT DETAIL PAGE (PDP)
+     ============================ -->
+<section class="product-detail-page" style="margin-top: 100px; border-top: 1px solid #eee; padding-top: 50px;">
+    <!-- Gallery -->
+    <div class="product-gallery">
+        <img src="/media/sunglasses-detail.jpg" alt="Classic Aviator - Main View" class="main-image">
+        <div class="thumbnail-images">
+            <img src="/media/sunglasses-thumb-1.jpg" alt="Front view" class="active">
+            <img src="/media/sunglasses-thumb-2.jpg" alt="Side view">
+            <img src="/media/sunglasses-thumb-3.jpg" alt="Folded view">
+            <img src="/media/sunglasses-thumb-4.jpg" alt="On model">
+        </div>
+    </div>
+    
+    <!-- Product Info -->
+    <div class="product-info">
+        <p class="product-category">Aviator • Unisex • Polarized</p>
+        <h1>Classic Aviator</h1>
+        
+        <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="count">(124 reviews)</span>
+        </div>
+        
+        <p class="price">$189.00</p>
+        
+        <p class="product-description">
+            Timeless aviator design meets modern technology. These premium sunglasses 
+            feature polarized lenses for superior clarity, a lightweight titanium frame 
+            for all-day comfort, and 100% UV400 protection. Perfect for driving, outdoor 
+            activities, or everyday style.
+        </p>
+        
+        <!-- Color Selection -->
+        <div class="color-selection">
+            <label>Frame Color: <strong>Gold</strong></label>
+            <div class="color-options">
+                <button class="color-option active" style="background: #C9B037" data-color="Gold"></button>
+                <button class="color-option" style="background: #C0C0C0" data-color="Silver"></button>
+                <button class="color-option" style="background: #1a1a1a" data-color="Matte Black"></button>
+                <button class="color-option" style="background: linear-gradient(135deg, #C9B037 50%, #C0C0C0 50%)" data-color="Gold/Silver"></button>
+            </div>
+        </div>
+        
+        <!-- Specifications -->
+        <div class="product-specs">
+            <h3>Specifications</h3>
+            <ul>
+                <li><span>Frame Material</span><span>Titanium</span></li>
+                <li><span>Lens Material</span><span>CR-39 Polarized</span></li>
+                <li><span>Lens Width</span><span>58mm</span></li>
+                <li><span>Bridge Width</span><span>14mm</span></li>
+                <li><span>Temple Length</span><span>140mm</span></li>
+                <li><span>UV Protection</span><span>100% UV400</span></li>
+            </ul>
+        </div>
+        
+        <!-- Quantity -->
+        <div class="quantity-selector">
+            <label>Quantity</label>
+            <div class="quantity-controls">
+                <button type="button">−</button>
+                <input type="number" value="1" min="1" max="10">
+                <button type="button">+</button>
+            </div>
+        </div>
+        
+        <!-- Actions -->
+        <div class="product-actions">
+            <button class="button">Add to Cart</button>
+            <button class="button-outline">♡ Wishlist</button>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <span>✓</span>
+                <span>Free Shipping</span>
+            </div>
+            <div class="trust-badge">
+                <span>↩</span>
+                <span>30-Day Returns</span>
+            </div>
+            <div class="trust-badge">
+                <span>🛡</span>
+                <span>2-Year Warranty</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================
+     MINI CART (Slide-out)
+     ============================ -->
+<div class="mini-cart-overlay"></div>
+<aside class="mini-cart">
+    <div class="mini-cart-header">
+        <h3>Your Cart (3)</h3>
+        <button class="close-cart" aria-label="Close cart">&times;</button>
+    </div>
+    
+    <div class="mini-cart-items">
+        <!-- Cart Item 1 -->
+        <div class="mini-cart-item">
+            <img src="/media/sunglasses-1.jpg" alt="Classic Aviator">
+            <div class="mini-cart-item-info">
+                <p class="mini-cart-item-name">Classic Aviator</p>
+                <p class="mini-cart-item-variant">Gold / Polarized</p>
+                <p class="mini-cart-item-price">$189.00</p>
+                <p class="mini-cart-item-qty">Qty: 1</p>
+            </div>
+            <button class="mini-cart-item-remove" aria-label="Remove item">&times;</button>
+        </div>
+        
+        <!-- Cart Item 2 -->
+        <div class="mini-cart-item">
+            <img src="/media/sunglasses-2.jpg" alt="Urban Wayfarer">
+            <div class="mini-cart-item-info">
+                <p class="mini-cart-item-name">Urban Wayfarer</p>
+                <p class="mini-cart-item-variant">Matte Black / Gradient</p>
+                <p class="mini-cart-item-price">$165.00</p>
+                <p class="mini-cart-item-qty">Qty: 1</p>
+            </div>
+            <button class="mini-cart-item-remove" aria-label="Remove item">&times;</button>
+        </div>
+        
+        <!-- Cart Item 3 -->
+        <div class="mini-cart-item">
+            <img src="/media/sunglasses-3.jpg" alt="Retro Round">
+            <div class="mini-cart-item-info">
+                <p class="mini-cart-item-name">Retro Round</p>
+                <p class="mini-cart-item-variant">Tortoise / Brown</p>
+                <p class="mini-cart-item-price">$159.00</p>
+                <p class="mini-cart-item-qty">Qty: 1</p>
+            </div>
+            <button class="mini-cart-item-remove" aria-label="Remove item">&times;</button>
+        </div>
+    </div>
+    
+    <div class="mini-cart-footer">
+        <div class="mini-cart-subtotal">
+            <span>Subtotal</span>
+            <span>$513.00</span>
+        </div>
+        <div class="mini-cart-total">
+            <span>Total</span>
+            <span>$513.00</span>
+        </div>
+        <a href="/checkout" class="button button-full">Checkout</a>
+        <a href="/cart" class="view-cart-link">View Full Cart</a>
+    </div>
+</aside>
+
+<!-- ============================
+     FOOTER (Full Version)
+     ============================ -->
+<footer>
+    <div class="footer-main">
+        <div class="footer-brand">
+            <p class="logo">SHADES</p>
+            <p>Premium sunglasses for the modern lifestyle. Quality craftsmanship, timeless design, 100% UV protection.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="Pinterest">📌</a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Shop</h4>
+            <ul>
+                <li><a href="/collections/men">Men's Sunglasses</a></li>
+                <li><a href="/collections/women">Women's Sunglasses</a></li>
+                <li><a href="/collections/new">New Arrivals</a></li>
+                <li><a href="/collections/sale">Sale</a></li>
+                <li><a href="/collections/polarized">Polarized</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/shipping">Shipping Info</a></li>
+                <li><a href="/returns">Returns & Exchanges</a></li>
+                <li><a href="/warranty">Warranty</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/careers">Careers</a></li>
+                <li><a href="/press">Press</a></li>
+                <li><a href="/sustainability">Sustainability</a></li>
+                <li><a href="/stores">Store Locator</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 SHADES. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+    </div>
+</footer>
+
+<!-- ============================
+     JAVASCRIPT (For Reference)
+     ============================ -->
+<script>
+    // Toggle Mini Cart
+    document.querySelectorAll('.cart-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelector('.mini-cart').classList.toggle('active');
+            document.querySelector('.mini-cart-overlay').classList.toggle('active');
+        });
+    });
+    
+    document.querySelector('.close-cart')?.addEventListener('click', () => {
+        document.querySelector('.mini-cart').classList.remove('active');
+        document.querySelector('.mini-cart-overlay').classList.remove('active');
+    });
+    
+    document.querySelector('.mini-cart-overlay')?.addEventListener('click', () => {
+        document.querySelector('.mini-cart').classList.remove('active');
+        document.querySelector('.mini-cart-overlay').classList.remove('active');
+    });
+    
+    // Filter Pills Toggle
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            pill.classList.toggle('active');
+        });
+    });
+    
+    // Color Options Toggle
+    document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', () => {
+            document.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
+            option.classList.add('active');
+        });
+    });
+    
+    // Thumbnail Images Toggle
+    document.querySelectorAll('.thumbnail-images img').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            document.querySelectorAll('.thumbnail-images img').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            // Update main image
+            document.querySelector('.main-image').src = thumb.src.replace('thumb', 'detail');
+        });
+    });
+    
+    // Quantity Controls
+    document.querySelectorAll('.quantity-controls').forEach(control => {
+        const input = control.querySelector('input');
+        const minusBtn = control.querySelector('button:first-child');
+        const plusBtn = control.querySelector('button:last-child');
+        
+        minusBtn?.addEventListener('click', () => {
+            if (input.value > 1) input.value = parseInt(input.value) - 1;
+        });
+        
+        plusBtn?.addEventListener('click', () => {
+            if (input.value < 10) input.value = parseInt(input.value) + 1;
+        });
+    });
+</script>
+
+</body>
+</html>

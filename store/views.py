@@ -70,7 +70,7 @@ def add_to_cart(request, product_id):
         cart_item.save()
     return redirect('product_list')
 
-login_required
+@login_required
 def view_cart(request):
     cart, _     = Cart.objects.get_or_create(user=request.user)
     raw_items   = CartItem.objects.filter(cart=cart)

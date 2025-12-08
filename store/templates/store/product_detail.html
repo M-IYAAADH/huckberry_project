@@ -1,37 +1,78 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ product.name }}{% endblock %}
+{% block title %}{{ product.name }} - Huckberry{% endblock %}
 
 {% block content %}
-<div style="max-width: 800px; margin: 40px auto; text-align: center;">
-  
-  <!-- Product Image -->
-  {% if product.image %}
-    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; height: auto; border-radius: 10px;">
-  {% endif %}
+<div class="product-detail-page">
 
-  <!-- Product Name & Price -->
-  <h2 style="margin-top: 20px;">{{ product.name }}</h2>
-  <p style="font-size: 20px; font-weight: bold;">MVR {{ product.price|floatformat:2 }}</p>
-
-  <!-- Description Box -->
-  <div style="border: 1px solid #ddd; padding: 20px; border-radius: 10px; background-color: #fdfdfd; text-align: left; margin-top: 20px;">
-    <p>{{ product.description }}</p>
-
-    <ul style="list-style: none; padding-left: 0; margin-top: 15px;">
-      <li><strong>Brand:</strong> {{ product.brand }}</li>
-      <li><strong>Gender:</strong> {{ product.gender }}</li>
-      <li><strong>Material:</strong> {{ product.material }}</li>
-    </ul>
+  <!-- Product Gallery -->
+  <div class="product-gallery">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="main-image">
+    {% endif %}
   </div>
 
-  <!-- Add to Cart Button -->
-  <form method="post" action="{% url 'add_to_cart' product.id %}" style="margin-top: 25px;">
-    {% csrf_token %}
-    <button type="submit" style="background-color: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px;">
-      Add to Cart
-    </button>
-  </form>
+  <!-- Product Info -->
+  <div class="product-info">
+    <p class="product-category">{{ product.get_brand_display }} • {{ product.get_gender_display }}</p>
+
+    <h1>{{ product.name }}</h1>
+
+    <p class="price">MVR {{ product.price|floatformat:2 }}</p>
+
+    <p class="product-description">
+      {{ product.description }}
+    </p>
+
+    <!-- Specifications -->
+    <div class="product-specs">
+      <h3>Specifications</h3>
+      <ul>
+        <li>
+          <span>Brand</span>
+          <span>{{ product.get_brand_display }}</span>
+        </li>
+        <li>
+          <span>Gender</span>
+          <span>{{ product.get_gender_display }}</span>
+        </li>
+        <li>
+          <span>Material</span>
+          <span>{{ product.get_material_display }}</span>
+        </li>
+        <li>
+          <span>UV Protection</span>
+          <span>100% UV400</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Add to Cart -->
+    <form method="post" action="{% url 'add_to_cart' product.id %}">
+      {% csrf_token %}
+      <div class="product-actions">
+        <button type="submit" class="button">Add to Cart</button>
+        <a href="{% url 'product_list' %}" class="button-outline">Back to Shop</a>
+      </div>
+    </form>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <span>✓</span>
+        <span>Free Shipping</span>
+      </div>
+      <div class="trust-badge">
+        <span>↩</span>
+        <span>30-Day Returns</span>
+      </div>
+      <div class="trust-badge">
+        <span>🛡</span>
+        <span>1-Year Warranty</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 {% endblock %}

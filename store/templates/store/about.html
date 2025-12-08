@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}About Us{% endblock %}
+{% block title %}About Us - Huckberry{% endblock %}
 
 {% block content %}
-  <div class="page-center">
-    <h1>About Us</h1>
-    <p>
-      Welcome to Huckberry! We’re passionate about bringing you a curated selection
-      of high-quality products—from rugged outdoor gear to everyday essentials—that
-      help you live life to the fullest.
-    </p>
-    <p>
-      Founded in 2011, our mission has always been to discover and share the very
-      best in design, craftsmanship, and innovation. Whether you’re hitting the trail,
-      exploring the city, or simply enjoying a quiet weekend at home, Huckberry is
-      here to outfit your adventures.
-    </p>
-  </div>
+<div class="page-center" style="max-width: 800px; margin: 0 auto;">
+  <h1>About Us</h1>
+  <p style="font-size: 1.125rem; color: #666; margin-bottom: 1.5rem;">
+    Welcome to Huckberry! We're passionate about bringing you a curated selection
+    of high-quality sunglasses that help you see the world in style.
+  </p>
+  <p style="font-size: 1.125rem; color: #666; margin-bottom: 1.5rem;">
+    Every pair of sunglasses in our collection is crafted with premium materials,
+    featuring 100% UV400 protection to keep your eyes safe while looking great.
+    From classic aviators to modern wayfarers, we have something for everyone.
+  </p>
+  <p style="font-size: 1.125rem; color: #666; margin-bottom: 2rem;">
+    Founded with a mission to make premium eyewear accessible, Huckberry is here
+    to outfit your adventures—whether you're hitting the beach, exploring the city,
+    or simply enjoying a sunny day.
+  </p>
+  <a href="{% url 'product_list' %}" class="button">Shop Our Collection</a>
+</div>
 {% endblock %}

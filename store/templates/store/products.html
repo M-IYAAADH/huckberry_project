@@ -1,77 +1,97 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load static %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Sunglasses Collection - Huckberry{% endblock %}
 
 {% block content %}
-<h2 class="page-title" style="text-align: center; margin-bottom: 30px;">Explore Sunglasses</h2>
+<h2 class="page-title">Explore Sunglasses</h2>
 
-<!-- Main Layout -->
-<div style="display: flex; gap: 20px; align-items: flex-start;">
+<!-- Filters & Product Layout -->
+<div class="container" style="display: flex; gap: 2rem; align-items: flex-start; padding: 0 2rem;">
 
   <!-- Sidebar Filters -->
-  <aside style="width: 250px; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+  <aside class="filters-container" style="width: 280px; flex-shrink: 0; margin: 0;">
+    <div class="filters-header">
+      <h3>Filters</h3>
+      <a href="{% url 'product_list' %}" class="clear-filters">Clear All</a>
+    </div>
+
     <form method="get">
+      <!-- Brand Filter -->
       <div class="filter-group">
-        <h3>Filter by Brand</h3>
-        {% for code,label in Product.BRAND_CHOICES %}
-          <label style="display: block;">
-            <input type="checkbox" name="brand" value="{{ code }}"
-                   {% if code in selected_brands %}checked{% endif %}>
+        <label>Brand</label>
+        <div class="filter-pills" style="flex-direction: column; align-items: flex-start;">
+          {% for code,label in Product.BRAND_CHOICES %}
+          <label class="filter-checkbox">
+            <input type="checkbox" name="brand" value="{{ code }}" {% if code in selected_brands %}checked{% endif %}>
             {{ label }}
           </label>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
 
-      <div class="filter-group" style="margin-top: 20px;">
-        <h3>Filter by Gender</h3>
-        {% for code,label in Product.GENDER_CHOICES %}
-          <label style="display: block;">
-            <input type="checkbox" name="gender" value="{{ code }}"
-                   {% if code in selected_genders %}checked{% endif %}>
+      <!-- Gender Filter -->
+      <div class="filter-group">
+        <label>Gender</label>
+        <div class="filter-pills" style="flex-direction: column; align-items: flex-start;">
+          {% for code,label in Product.GENDER_CHOICES %}
+          <label class="filter-checkbox">
+            <input type="checkbox" name="gender" value="{{ code }}" {% if code in selected_genders %}checked{% endif %}>
             {{ label }}
           </label>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
 
-      <div class="filter-group" style="margin-top: 20px;">
-        <h3>Filter by Material</h3>
-        {% for code,label in Product.MATERIAL_CHOICES %}
-          <label style="display: block;">
-            <input type="checkbox" name="material" value="{{ code }}"
-                   {% if code in selected_materials %}checked{% endif %}>
+      <!-- Material Filter -->
+      <div class="filter-group">
+        <label>Material</label>
+        <div class="filter-pills" style="flex-direction: column; align-items: flex-start;">
+          {% for code,label in Product.MATERIAL_CHOICES %}
+          <label class="filter-checkbox">
+            <input type="checkbox" name="material" value="{{ code }}" {% if code in selected_materials %}checked{% endif %}>
             {{ label }}
           </label>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
 
-      <button type="submit" style="margin-top: 20px;" class="button">Apply Filters</button>
+      <button type="submit" class="button" style="width: 100%; margin-top: 1.5rem;">Apply Filters</button>
     </form>
   </aside>
 
   <!-- Product Grid -->
-  <section style="flex: 1; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+  <section class="product-grid" style="flex: 1; padding: 0; max-width: none;">
     {% for product in products %}
-      <div class="product-card" style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
-        {% if product.image %}
-          <a href="{% url 'product_detail' product.id %}">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; height: 150px; object-fit: contain;">
-          </a>
-        {% endif %}
-        <h3 style="margin: 10px 0;">{{ product.name }}</h3>
-        <p class="price">MVR {{ product.price|floatformat:2 }}</p>
-        <div class="card-actions" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-          <a href="{% url 'product_detail' product.id %}"
-            style="background-color: #2563eb; color: white; padding: 8px; text-align: center; border-radius: 5px; text-decoration: none;">
-            View Details
-          </a>
-          <a href="{% url 'add_to_cart' product.id %}"
-            style="background-color: #2563eb; color: white; padding: 8px; text-align: center; border-radius: 5px; text-decoration: none;">
-            Add to Cart
-          </a>
-        </div>
-
+    <article class="product-card">
+      <!-- Product Image -->
+      {% if product.image %}
+      <div class="product-image-wrapper">
+        <a href="{% url 'product_detail' product.id %}">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </a>
       </div>
+      {% endif %}
+
+      <!-- Product Info -->
+      <p class="product-category">{{ product.get_brand_display }} - {{ product.get_gender_display }}</p>
+      <h3 class="product-name">
+        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+      </h3>
+      <p class="price">MVR {{ product.price|floatformat:2 }}</p>
+
+      <!-- Actions -->
+      <div class="product-actions" style="margin-top: 1rem;">
+        <a href="{% url 'product_detail' product.id %}" class="button-small button-secondary" style="flex: 1;">View</a>
+        <a href="{% url 'add_to_cart' product.id %}" class="button-small" style="flex: 1;">Add to Cart</a>
+      </div>
+    </article>
+    {% empty %}
+    <div class="empty-cart" style="grid-column: 1 / -1;">
+      <h2>No products found</h2>
+      <p>Try adjusting your filters or check back later.</p>
+      <a href="{% url 'product_list' %}" class="button">Clear Filters</a>
+    </div>
     {% endfor %}
   </section>
 </div>

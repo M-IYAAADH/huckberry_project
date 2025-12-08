@@ -1,44 +1,88 @@
 {% extends "base.html" %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Sign Up - Huckberry{% endblock %}
 
 {% block content %}
-<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f9f9f9;">
-  <div style="width: 100%; max-width: 400px; background: white; border: 1px solid #ccc; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-    <h2 style="text-align: center; margin-bottom: 25px;">Create an Account</h2>
+<div class="auth-page">
+  <div class="auth-card">
+    <!-- Logo/Icon -->
+    <div class="auth-icon">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <line x1="19" y1="8" x2="19" y2="14"></line>
+        <line x1="22" y1="11" x2="16" y2="11"></line>
+      </svg>
+    </div>
 
-    <form method="post">
+    <h1 class="auth-title">Create an Account</h1>
+    <p class="auth-subtitle">Join us to start shopping for premium sunglasses</p>
+
+    <form method="post" class="auth-form">
       {% csrf_token %}
+
       {% for field in form %}
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; font-weight: bold; margin-bottom: 8px;">{{ field.label_tag }}</label>
-          {{ field }}
-          
-          {% for error in field.errors %}
-            <div style="color: red; font-size: 13px; margin-top: 5px;">{{ error }}</div>
-          {% endfor %}
-          
-          {% if field.help_text %}
-            <small style="color: #555; display: block; margin-top: 5px;">{{ field.help_text }}</small>
-          {% endif %}
-        </div>
+      <div class="auth-field">
+        <label for="{{ field.id_for_label }}" class="auth-label">{{ field.label }}</label>
+        {{ field }}
+
+        {% if field.help_text %}
+        <small class="auth-help-text">{{ field.help_text|safe }}</small>
+        {% endif %}
+
+        {% for error in field.errors %}
+        <div class="field-error">{{ error }}</div>
+        {% endfor %}
+      </div>
       {% endfor %}
 
-      <button type="submit" style="width: 100%; padding: 10px; background-color: #2563eb; color: white; border: none; border-radius: 5px; font-weight: bold;">Register</button>
+      <!-- Submit Button -->
+      <button type="submit" class="auth-button">
+        Create Account
+      </button>
     </form>
 
-    <p style="text-align: center; margin-top: 15px;">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+    <!-- Login Link -->
+    <div class="auth-footer">
+      <p>Already have an account? <a href="{% url 'login' %}" class="auth-link-strong">Log in</a></p>
+    </div>
   </div>
 </div>
 
 <style>
-  input, select, textarea {
+  /* Override Django's default form widget styles */
+  .auth-form input,
+  .auth-form select,
+  .auth-form textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #bbb;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #333;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
     border-radius: 8px;
-    font-size: 14px;
+    transition: all 0.2s ease;
     box-sizing: border-box;
+  }
+
+  .auth-form input:hover,
+  .auth-form select:hover,
+  .auth-form textarea:hover {
+    border-color: #c0c0c0;
+  }
+
+  .auth-form input:focus,
+  .auth-form select:focus,
+  .auth-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+  }
+
+  .auth-form input::placeholder {
+    color: #999;
   }
 </style>
 {% endblock %}
